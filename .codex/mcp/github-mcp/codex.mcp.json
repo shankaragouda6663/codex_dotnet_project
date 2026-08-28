@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "node",
+      "args": [".codex/mcp/github-mcp/server.mjs"],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}",
+        "GITHUB_OWNER": "shankaragouda6663",
+        "GITHUB_REPO": "codex_dotnet_project"
+      }
+    }
+  }
+}

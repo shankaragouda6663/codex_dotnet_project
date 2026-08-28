@@ -1,0 +1,13 @@
+{
+  "name": "github-mcp-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Project-scoped MCP server for GitHub integration",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
