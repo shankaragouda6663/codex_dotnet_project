@@ -1,0 +1,9 @@
+{
+  "notes": "Synthetic fixture placeholder for release-review harness dry runs.",
+  "routing_capacity_defect_id": "RXFLOW-RC-EXAMPLE",
+  "acceptance_criteria": [
+    "No oversubscription under concurrent submissions",
+    "Capacity release on cancellation/failure",
+    "Duplicate submissions remain idempotent"
+  ]
+}

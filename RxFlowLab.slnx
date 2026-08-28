@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="RxFlow.Api/RxFlow.Api.csproj" />
+  <Project Path="RxFlow.Application/RxFlow.Application.csproj" />
+  <Project Path="RxFlow.Contracts/RxFlow.Contracts.csproj" />
+  <Project Path="RxFlow.Domain/RxFlow.Domain.csproj" />
+  <Project Path="RxFlow.Infrastructure/RxFlow.Infrastructure.csproj" />
+  <Project Path="RxFlow.Legacy.Batch/RxFlow.Legacy.Batch.csproj" />
+  <Project Path="RxFlow.Tests/RxFlow.Tests.csproj" />
+  <Project Path="RxFlow.Workers/RxFlow.Workers.csproj" />
+</Solution>

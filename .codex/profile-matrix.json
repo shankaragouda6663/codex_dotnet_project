@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "codex_cli_version": "0.150.1",
+  "generated_utc": "2026-08-28T00:00:00Z",
+  "profiles": [
+    {
+      "name": "rx-analyst",
+      "purpose": "Architecture and investigation",
+      "sandbox_mode": "read-only",
+      "approval_policy": "on-request",
+      "network_default": "disabled_via_sandbox_state_in_harness",
+      "write_scope": "none",
+      "enforcement_layers": [
+        "Codex CLI flags",
+        "Codex sandbox state",
+        "Verification harness assertions"
+      ]
+    },
+    {
+      "name": "rx-developer",
+      "purpose": "Code modification and testing",
+      "sandbox_mode": "workspace-write",
+      "approval_policy": "on-request",
+      "network_default": "disabled_by_default_enable_only_when_authorized",
+      "write_scope": "approved_repo_paths_only_via_wrapper",
+      "enforcement_layers": [
+        "Codex CLI flags",
+        "Path guard wrapper",
+        "Command allow/deny checks"
+      ]
+    },
+    {
+      "name": "rx-security",
+      "purpose": "Adversarial code review",
+      "sandbox_mode": "read-only",
+      "approval_policy": "on-request",
+      "network_default": "disabled_via_sandbox_state_in_harness",
+      "write_scope": "none",
+      "enforcement_layers": [
+        "Codex CLI flags",
+        "Codex sandbox state",
+        "Verification harness assertions"
+      ]
+    },
+    {
+      "name": "rx-ci",
+      "purpose": "Non-interactive PR analysis",
+      "sandbox_mode": "read-only",
+      "approval_policy": "never",
+      "network_default": "disabled_via_sandbox_state_in_harness",
+      "write_scope": "none",
+      "enforcement_layers": [
+        "Codex CLI flags",
+        "Codex sandbox state",
+        "Non-interactive runner timeout and schema checks"
+      ]
+    },
+    {
+      "name": "rx-remediator",
+      "purpose": "Controlled patch creation",
+      "sandbox_mode": "workspace-write",
+      "approval_policy": "on-request",
+      "network_default": "disabled_by_default_enable_only_when_authorized",
+      "write_scope": "isolated_worktree_and_artifact_dir_only_via_wrapper",
+      "enforcement_layers": [
+        "Codex CLI flags",
+        "Isolated worktree script",
+        "Path guard wrapper",
+        "Cleanup validation"
+      ]
+    }
+  ],
+  "limitations": [
+    "Repository-scoped files cannot directly install named --profile files into CODEX_HOME.",
+    "Narrow writable-root enforcement is implemented via wrapper guards because writable_roots is not a recognized top-level config key in this Codex contract."
+  ]
+}

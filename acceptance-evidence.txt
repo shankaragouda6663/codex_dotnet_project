@@ -1,0 +1,134 @@
+===== docker-compose-up =====
+CMD: docker compose up -d
+EXIT: 1
+ELAPSED_MS: 2620
+OUTPUT:
+
+
+===== dotnet-restore =====
+CMD: dotnet restore RxFlowLab.slnx --configfile NuGet.Config
+EXIT: 0
+ELAPSED_MS: 1663
+OUTPUT:
+  Determining projects to restore...
+  Restored E:\sample_projects\codex-based-dotnet-project\RxFlow.Domain\RxFlow.Domain.csproj (in 152 ms).
+  Restored E:\sample_projects\codex-based-dotnet-project\RxFlow.Legacy.Batch\RxFlow.Legacy.Batch.csproj (in 152 ms).
+  Restored E:\sample_projects\codex-based-dotnet-project\RxFlow.Contracts\RxFlow.Contracts.csproj (in 153 ms).
+  Restored E:\sample_projects\codex-based-dotnet-project\RxFlow.Infrastructure\RxFlow.Infrastructure.csproj (in 307 ms).
+  Restored E:\sample_projects\codex-based-dotnet-project\RxFlow.Workers\RxFlow.Workers.csproj (in 304 ms).
+  Restored E:\sample_projects\codex-based-dotnet-project\RxFlow.Application\RxFlow.Application.csproj (in 304 ms).
+  Restored E:\sample_projects\codex-based-dotnet-project\RxFlow.Api\RxFlow.Api.csproj (in 311 ms).
+  Restored E:\sample_projects\codex-based-dotnet-project\RxFlow.Tests\RxFlow.Tests.csproj (in 324 ms).
+
+
+===== dotnet-build =====
+CMD: dotnet build RxFlowLab.slnx --no-restore
+EXIT: 0
+ELAPSED_MS: 6033
+OUTPUT:
+  RxFlow.Contracts -> E:\sample_projects\codex-based-dotnet-project\RxFlow.Contracts\bin\Debug\net8.0\RxFlow.Contracts.dll
+  RxFlow.Legacy.Batch -> E:\sample_projects\codex-based-dotnet-project\RxFlow.Legacy.Batch\bin\Debug\net8.0\RxFlow.Legacy.Batch.dll
+  RxFlow.Domain -> E:\sample_projects\codex-based-dotnet-project\RxFlow.Domain\bin\Debug\net8.0\RxFlow.Domain.dll
+  RxFlow.Application -> E:\sample_projects\codex-based-dotnet-project\RxFlow.Application\bin\Debug\net8.0\RxFlow.Application.dll
+  RxFlow.Infrastructure -> E:\sample_projects\codex-based-dotnet-project\RxFlow.Infrastructure\bin\Debug\net8.0\RxFlow.Infrastructure.dll
+  RxFlow.Workers -> E:\sample_projects\codex-based-dotnet-project\RxFlow.Workers\bin\Debug\net8.0\RxFlow.Workers.dll
+  RxFlow.Api -> E:\sample_projects\codex-based-dotnet-project\RxFlow.Api\bin\Debug\net8.0\RxFlow.Api.dll
+  RxFlow.Tests -> E:\sample_projects\codex-based-dotnet-project\RxFlow.Tests\bin\Debug\net8.0\RxFlow.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.65
+
+
+===== dotnet-test =====
+CMD: dotnet test RxFlowLab.slnx --no-build
+EXIT: 0
+ELAPSED_MS: 2648
+OUTPUT:
+Test run for E:\sample_projects\codex-based-dotnet-project\RxFlow.Tests\bin\Debug\net8.0\RxFlow.Tests.dll (.NETCoreApp,Version=v8.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.48]     RxFlow.Tests.Infrastructure.RawSqlOrderReportQueryTests.SearchByPatientAsync_WithSimpleInput_ReturnsList [SKIP]
+[xUnit.net 00:00:00.53]     RxFlow.Tests.Infrastructure.MigrationSmokeTests.MigrationList_ShouldContainExpectedEntries [SKIP]
+[xUnit.net 00:00:00.53]     RxFlow.Tests.Infrastructure.RedisInFlightCounterTests.IncrementAndDecrement_SequentialFlow_ReturnsToZero [SKIP]
+  Skipped RxFlow.Tests.Infrastructure.RawSqlOrderReportQueryTests.SearchByPatientAsync_WithSimpleInput_ReturnsList [1 ms]
+  Skipped RxFlow.Tests.Infrastructure.MigrationSmokeTests.MigrationList_ShouldContainExpectedEntries [1 ms]
+  Skipped RxFlow.Tests.Infrastructure.RedisInFlightCounterTests.IncrementAndDecrement_SequentialFlow_ReturnsToZero [1 ms]
+
+Passed!  - Failed:     0, Passed:     5, Skipped:     3, Total:     8, Duration: 84 ms - RxFlow.Tests.dll (net8.0)
+
+
+===== dotnet-format-verify =====
+CMD: dotnet format RxFlowLab.slnx --verify-no-changes
+EXIT: 0
+ELAPSED_MS: 18341
+OUTPUT:
+
+
+===== vulnerability-policy =====
+CMD: powershell -ExecutionPolicy Bypass -File .\scripts\check-vulnerabilities.ps1
+EXIT: 0
+ELAPSED_MS: 13284
+OUTPUT:
+Scanning RxFlow.Api/RxFlow.Api.csproj
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+
+The following sources were used:
+   https://api.nuget.org/v3/index.json
+
+Project `RxFlow.Api` has the following vulnerable packages
+   [net8.0]: 
+   Transitive Package       Resolved   Severity   Advisory URL                                     
+   > OpenTelemetry.Api      1.10.0     Moderate   https://github.com/advisories/GHSA-8785-wc3w-h8q6
+                                       Moderate   https://github.com/advisories/GHSA-g94r-2vxg-569j
+
+
+Scanning RxFlow.Application/RxFlow.Application.csproj
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+
+The following sources were used:
+   https://api.nuget.org/v3/index.json
+
+The given project `RxFlow.Application` has no vulnerable packages given the current sources.
+
+Scanning RxFlow.Contracts/RxFlow.Contracts.csproj
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+
+The following sources were used:
+   https://api.nuget.org/v3/index.json
+
+The given project `RxFlow.Contracts` has no vulnerable packages given the current sources.
+
+Scanning RxFlow.Domain/RxFlow.Domain.csproj
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+
+The following sources were used:
+   https://api.nuget.org/v3/index.json
+
+The given project `RxFlow.Domain` has no vulnerable packages given the current sources.
+
+Scanning RxFlow.Infrastructure/RxFlow.Infrastructure.csproj
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+
+The following sources were used:
+   https://api.nuget.org/v3/index.json
+
+The given project `RxFlow.Infrastructure` has no vulnerable packages given the current sources.
+
+Scanning RxFlow.Workers/RxFlow.Workers.csproj
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+
+The following sources were used:
+   https://api.nuget.org/v3/index.json
+
+The given project `RxFlow.Workers` has no vulnerable packages given the current sources.
+
+Vulnerability policy check passed (no High/Critical in production projects).
+

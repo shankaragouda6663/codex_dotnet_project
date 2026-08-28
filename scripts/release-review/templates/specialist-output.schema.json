@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "reviewer_id",
+    "role",
+    "worktree_path",
+    "base_sha",
+    "head_sha",
+    "observed_patch_hash",
+    "scope_reviewed",
+    "files_inspected",
+    "mcp_evidence_used",
+    "commands",
+    "findings",
+    "dismissed_concerns",
+    "unverified_questions",
+    "release_recommendation",
+    "clean_status_proof"
+  ],
+  "properties": {
+    "reviewer_id": { "type": "string" },
+    "role": { "type": "string" },
+    "worktree_path": { "type": "string" },
+    "base_sha": { "type": "string" },
+    "head_sha": { "type": "string" },
+    "observed_patch_hash": { "type": "string" },
+    "scope_reviewed": { "type": "array", "items": { "type": "string" } },
+    "files_inspected": { "type": "array", "items": { "type": "string" } },
+    "mcp_evidence_used": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "retrieved_utc", "object_id", "environment", "limitations"],
+        "properties": {
+          "source": { "type": "string" },
+          "retrieved_utc": { "type": "string" },
+          "object_id": { "type": "string" },
+          "environment": { "type": "string" },
+          "limitations": { "type": "string" }
+        }
+      }
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["command", "worktree", "exit_code", "result"],
+        "properties": {
+          "command": { "type": "string" },
+          "worktree": { "type": "string" },
+          "exit_code": { "type": "integer" },
+          "result": { "type": "string" }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "confidence", "category", "file", "line", "evidence", "impact", "recommendation", "verification_status"],
+        "properties": {
+          "id": { "type": "string" },
+          "severity": { "type": "string", "enum": ["critical", "high", "medium", "low", "informational"] },
+          "confidence": { "type": "string" },
+          "category": { "type": "string" },
+          "file": { "type": "string" },
+          "line": { "type": "integer" },
+          "evidence": { "type": "string" },
+          "impact": { "type": "string" },
+          "recommendation": { "type": "string" },
+          "verification_status": { "type": "string" }
+        }
+      }
+    },
+    "dismissed_concerns": { "type": "array", "items": { "type": "string" } },
+    "unverified_questions": { "type": "array", "items": { "type": "string" } },
+    "release_recommendation": { "type": "string", "enum": ["GO", "CONDITIONAL_GO", "NO_GO"] },
+    "clean_status_proof": {
+      "type": "object",
+      "required": ["head_before", "head_after", "tracked_files_clean"],
+      "properties": {
+        "head_before": { "type": "string" },
+        "head_after": { "type": "string" },
+        "tracked_files_clean": { "type": "boolean" }
+      }
+    }
+  }
+}

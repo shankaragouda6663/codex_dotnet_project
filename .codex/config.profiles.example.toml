@@ -1,0 +1,38 @@
+# RxFlow Codex profile template for codex-cli 0.150.1.
+# Install as user-scoped profile files under:
+#   %CODEX_HOME%\rx-analyst.config.toml
+#   %CODEX_HOME%\rx-developer.config.toml
+#   %CODEX_HOME%\rx-security.config.toml
+#   %CODEX_HOME%\rx-ci.config.toml
+#   %CODEX_HOME%\rx-remediator.config.toml
+#
+# NOTE:
+# - The Codex CLI `--profile <name>` contract loads CODEX_HOME/<name>.config.toml.
+# - Repo-scoped config cannot directly register those names; use installer script.
+# - Writable-root narrowing for developer/remediator is enforced by wrapper scripts,
+#   because `writable_roots` is not a recognized top-level config key in this contract.
+
+[profiles.rx-analyst]
+sandbox_mode = "read-only"
+approval_policy = "on-request"
+search = false
+
+[profiles.rx-developer]
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+search = false
+
+[profiles.rx-security]
+sandbox_mode = "read-only"
+approval_policy = "on-request"
+search = false
+
+[profiles.rx-ci]
+sandbox_mode = "read-only"
+approval_policy = "never"
+search = false
+
+[profiles.rx-remediator]
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+search = false
